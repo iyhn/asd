@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="MovieRepository">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/src/main/java/com/wongnai/interview/movie/MovieRepository.java" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
