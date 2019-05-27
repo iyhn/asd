@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.wongnai.interview.movie.external.MovieData;
+
 @Entity
 public class Movie {
 	@Id
@@ -29,6 +31,11 @@ public class Movie {
 
 	public Movie(String name) {
 		this.name = name;
+	}
+
+	public Movie(MovieData movieData) {
+		this.name = movieData.getTitle();
+		this.actors = movieData.getCast();
 	}
 
 	public Long getId() {
