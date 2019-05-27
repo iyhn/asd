@@ -1,8 +1,7 @@
 package com.wongnai.interview.movie.search;
 
-import java.util.*;
+import java.util.List;
 
-import com.wongnai.interview.movie.sync.MovieDataSynchronizer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
@@ -17,20 +16,8 @@ public class InvertedIndexMovieSearchService implements MovieSearchService {
 	@Autowired
 	private MovieRepository movieRepository;
 
-	@Autowired
-	private MovieDataSynchronizer movieDataSynchronizer;
-
 	@Override
 	public List<Movie> search(String queryText) {
-
-		List<String> queryList = Arrays.asList(queryText.toLowerCase().split(" "));
-
-		List<Movie> m = movieRepository.findInvertedIndex(queryList.get(0));
-
-		for (String i: queryList){
-			m.retainAll(movieRepository.findInvertedIndex(i));
-		}
-
 		//TODO: Step 4 => Please implement in-memory inverted index to search movie by keyword.
 		// You must find a way to build inverted index before you do an actual search.
 		// Inverted index would looks like this:
@@ -48,6 +35,6 @@ public class InvertedIndexMovieSearchService implements MovieSearchService {
 		// you have to return can be union or intersection of those 2 sets of ids.
 		// By the way, in this assignment, you must use intersection so that it left for just movie id 5.
 
-		return m;
+		return null;
 	}
 }

@@ -1,7 +1,6 @@
 package com.wongnai.interview.movie;
 
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -23,12 +22,6 @@ public interface MovieRepository extends CrudRepository<Movie, Long> {
 	 * 		a user query keyword
 	 * @return list of movie
 	 */
-	@Query("SELECT m FROM Movie m WHERE lower(m.name) LIKE concat('%', lower(:keyword) , '%')")
+	@Query("SELECT m FROM Movie m where m.name LIKE %:keyword%")
 	List<Movie> findByNameContains(@Param("keyword") String keyword);
-
-	@Query("SELECT m FROM Movie m WHERE m.id IN :list")
-	List<Movie> findById(@Param("list") List<Long> list);
-
-	@Query("SELECT i.movie FROM InvertedIndex i WHERE i.keyword=:keys")
-	List<Movie> findInvertedIndex(@Param("keys") String keys);
 }

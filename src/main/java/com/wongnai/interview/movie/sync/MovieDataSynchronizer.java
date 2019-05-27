@@ -2,8 +2,6 @@ package com.wongnai.interview.movie.sync;
 
 import javax.transaction.Transactional;
 
-import com.wongnai.interview.movie.Movie;
-import com.wongnai.interview.movie.external.MovieData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -20,10 +18,6 @@ public class MovieDataSynchronizer {
 
 	@Transactional
 	public void forceSync() {
-		movieRepository.deleteAll();
-		for (MovieData i: movieDataService.fetchAll()){
-			Movie tmp = new Movie(i);
-			movieRepository.save(tmp);
-		}
+		//TODO: implement this to sync movie into repository
 	}
 }
