@@ -24,4 +24,7 @@ public interface MovieRepository extends CrudRepository<Movie, Long> {
 	 */
 	@Query("SELECT m FROM Movie m WHERE lower(m.name) LIKE concat('%', lower(:keyword) , '%')")
 	List<Movie> findByNameContains(@Param("keyword") String keyword);
+
+	@Query("SELECT i.movie FROM InvertedIndex i WHERE i.keyword=:keys")
+	List<Movie> findInvertedIndex(@Param("keys") String keys);
 }

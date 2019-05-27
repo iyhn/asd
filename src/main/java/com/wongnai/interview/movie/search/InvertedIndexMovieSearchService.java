@@ -1,6 +1,7 @@
 package com.wongnai.interview.movie.search;
 
 import java.util.List;
+import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.DependsOn;
@@ -35,6 +36,14 @@ public class InvertedIndexMovieSearchService implements MovieSearchService {
 		// you have to return can be union or intersection of those 2 sets of ids.
 		// By the way, in this assignment, you must use intersection so that it left for just movie id 5.
 
-		return null;
+		List<String> queryList = Arrays.asList(queryText.toLowerCase().split(" "));
+
+		List<Movie> movieList = movieRepository.findInvertedIndex(queryList.get(0));
+
+		for (String i: queryList){
+			movieList.retainAll(movieRepository.findInvertedIndex(i));
+		}
+
+		return movieList;
 	}
 }
